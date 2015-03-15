@@ -4,3 +4,12 @@
 li {
   cursor: pointer; }
 
+body {
+  font-family: Garamond; }
+
+h3 {
+  color: red;
+  text-align: center; }
+
+#mapContainer {
+  text-align: left; }

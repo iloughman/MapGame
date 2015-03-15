@@ -1,12 +1,8 @@
-'user strict';
+'use strict';
 
-app.directive('question', function (QuestionFactory) {
+app.directive('question', function () {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/Question/question.html',
-		link: function (scope, elem, attr){
-			scope.answered = false;
-			scope.answeredCorrectly =  false;
-		}
+		templateUrl: 'js/Question/question.html'
 	};
 });

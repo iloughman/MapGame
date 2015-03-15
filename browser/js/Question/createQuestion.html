@@ -1,0 +1,17 @@
+<form name="addQuestionForm" ng-submit="addQuestionForm.$valid && addQuestion(question)">
+Question<br>
+<textarea type="text" 
+		  name="answer"
+		  required 
+		  rows="3" 
+		  cols="50"
+		  ng-model="question.question"></textarea>
+<br>
+Answer<br>
+<input type="text" 
+	   name="question"
+	   required
+	   ng-model="question.answer">
+<span><button class="btn btn-default" type="submit">Submit</button>
+<a ng-click="hideQuestionDisplay()" href="">[Hide Form]</a></span>
+</form>

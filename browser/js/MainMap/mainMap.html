@@ -1,15 +1,31 @@
-<div>
-	<h3>The Map</h3>
-	<h4>Please select a trivia difficulty level: <span><a href="">Easy</a> <a href="">Medium</a> <a href="">Hard</a></span></h4>
-</div>
-<!-- 		<span><a ng-repeat="difficulty in difficulties" 
-				 ng-click="setDifficulty(diffiulty)">{{ difficulty }}</a>
-		</span> -->
-		
-<div>
-	<span><h4 ng-click="fetchRandomQuestion()"><a href="">Generate Random Question:</a><h4><question ng-show="randomQuestion"></question></span>
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<h3>The Map</h3>
+	</div>
 </div>
 
-<div>
-	<h4><a href="">Create your own question!</a></h4>
-</div>
+<!-- <div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<h4>Score - Incorrect: {{score.incorrect}} - Correct: {{score.correct}} 
+	</div>
+</div> -->
+
+<section class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="question">
+				<span><h4 ng-click="fetchRandomQuestion()"><a href="">Generate Random Question:</a><h4><question ng-show="randomQuestion"></question></span>
+			</div>
+			<div class="createQuestion">
+				<h4 ng-click="createQuestionDisplay()"><a href="">Create your own question!</a></h4>
+				<create-question ng-show="createQuestionForm"></create-question>
+			</div>
+		</div>
+		<div class="col-md-8" id="mapContainer">
+		    <svg>
+		    </svg>
+		</div>
+	</div>
+
+</section>
+

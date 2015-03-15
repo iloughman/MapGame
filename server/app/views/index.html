@@ -11,21 +11,24 @@
     <script src="/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- // <script src="d3.js"></script> -->
 
     <!-- Built by Gulp -->
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <script src="/main.js"></script>
 
+
 </head>
 
 <body ng-app="MapGame">
-
     
     <ui-view>
         <a ui-sref="mainMap">Play Game</a>
     </ui-view>
-    <svg>
-    </svg>
+    <div id="mapContainer">
+        <svg>
+        </svg>
+    </div>
 
 </body>
 

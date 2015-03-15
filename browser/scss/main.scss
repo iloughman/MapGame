@@ -14,5 +14,15 @@ li {
   cursor: pointer;
 }
 
+body {
+	font-family: Garamond;
+}
 
-@import 'about';
+h3 {
+	color: red;
+	text-align: center;
+}
+
+#mapContainer {
+	text-align: left;
+}
