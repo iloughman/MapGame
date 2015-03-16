@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, ScoreFactory) {
+app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, GameFactory, ScoreFactory) {
 
     var width = 800;
     var height = 550;
@@ -27,6 +27,8 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Sc
 
     $scope.state = "(click a on state to guess)";
     $scope.guessResult = null;
+    $scope.showAnswerResult = false;
+    $scope.questionActive = false;
 
     d3.json("states.json", function (error, states) {
      if (error) return console.log(error);
@@ -47,11 +49,11 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Sc
          })
          .on('click', function (d,i) {
             var state = d.properties.NAME;
+            $scope.showAnswerResult = true;
             $scope.$apply(function(){
                 $scope.state = state;
                 $scope.guessResult = QuestionFactory.manageAnswer($scope.currentQuestion.answer, state);
             });
-            
          })
          .on('mouseenter', function (d,i) {
              d3.select(this).style("fill","yellow");
@@ -65,7 +67,8 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Sc
          })
          .on('mouseleave', function(d,i) {
              d3.select(this).style("fill",d.properties.color);
-             d3.select(this).style("stroke","white");                     
+             d3.select(this).style("stroke","white");  
+             $scope.showAnswerResult = false;                   
          });
     });
 
@@ -80,13 +83,42 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Sc
             $scope.currentQuestion = $scope.randomQuestion;
             $scope.state = "";
             $scope.guessResult;
-            console.log($scope.randomQuestion);
             $scope.user = UserFactory.createUser();
-            console.log($scope.user);
+            $scope.user.active = true;
         });
     };
 
-    $scope.createQuestionForm = false;;
+    $scope.beginGame = function (){
+        $scope.game = GameFactory.createGame();
+        $scope.user = UserFactory.createUser();
+        $scope.fetchAllQuestions();
+    }
+
+    $scope.fetchAllQuestions = function () {
+        QuestionFactory.getAllQuestions().then(function (questions) {
+            $scope.game.nextQuestionAvailable = false;
+            $scope.questions = questions;
+            console.log($scope.questions);
+            var numQuestions = questions.length;
+            var questionIndex = Math.floor(Math.random()*numQuestions)+1;
+            $scope.currentQuestion = $scope.questions[questionIndex];
+            $scope.questions.splice(questionIndex,1);
+        });
+    };
+
+    $scope.nextQuestion = function () {
+        $scope.game.questionNumber++;
+        $scope.user.guesses = 3;
+        console.log($scope.questions);
+        $scope.game.nextQuestionAvailable = false;
+        var numQuestions = $scope.questions.length;
+        var questionIndex = Math.floor(Math.random()*numQuestions)+1;
+        $scope.currentQuestion = $scope.questions[questionIndex];
+        $scope.questions.splice(questionIndex,1);
+    }
+
+    $scope.createQuestionForm = false;
+
     $scope.createQuestionDisplay = function () {
         $scope.createQuestionForm = true;
     };

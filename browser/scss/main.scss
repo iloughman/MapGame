@@ -19,8 +19,42 @@ body {
 }
 
 h3 {
-	color: red;
-	text-align: center;
+	text-align: left;
+}
+
+// .item {
+// 	font-size: 28px;
+// }
+
+.content {
+	margin-top: 50px;
+	margin-left: 20px;
+}
+.instructions {
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.question {
+	font-size: 26px;
+	margin: 10px;
+}
+
+.answer {
+	font-size: 26px;
+	margin: 10px;
+}
+
+.result {
+	font-size: 26px;
+	margin: 10px;
+	text-align: right;
+}
+
+.guessDisplay {
+	font-weight: 700;
+	font-size: 16px;
+	color: #337ab7;
 }
 
 #mapContainer {

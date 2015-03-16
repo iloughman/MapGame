@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory) {
+app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory, GameFactory) {
 	var factory = {};
 
 	factory.getAllQuestions = function(){
@@ -21,16 +21,19 @@ app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory) {
 		if (answer == clicked){
 			UserFactory.user.guesses = 0;
 			ScoreFactory.correct++;
-			return "correct";
+			UserFactory.user.active = false;
+			GameFactory.game.nextQuestionAvailable = true;
+			return "Correct";
 		}
 		else if (answer !== clicked && UserFactory.user.guesses > 1) {
 			UserFactory.user.guesses--;
-			return "incorrect";
+			return "Incorrect";
 		}
 		else {
 			UserFactory.user.guesses = 0;
 			ScoreFactory.incorrect++;
 			UserFactory.user.active = false;
+			GameFactory.game.nextQuestionAvailable = true;
 			return "No more guesses";
 		}
 	}

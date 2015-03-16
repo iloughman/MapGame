@@ -6,7 +6,11 @@ app.factory('UserFactory', function() {
 
 	var User = function (){
 		this.guesses = 3;
-		this.active = true;
+		this.active = false;
+		this.game = true;
+		this.nextQuestionAvailable = false;
+		this.questionNumber = 1;
+		this.questionLimit = 10;
 	};
 
 	factory.createUser = function(){

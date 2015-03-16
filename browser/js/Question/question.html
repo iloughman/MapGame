@@ -1,2 +1,13 @@
-<h5> Question: {{currentQuestion.question}} </h5>
-<h5> Your guess of {{ state }} is: {{ guessResult }} </h5>
+
+<div class="instructions">
+	<p>[Click on state to make a selection. You have three guesses]<p>
+</div>	
+<div class="question"> 
+	<p>Question <span class="guessDisplay">[{{game.questionNumber}} of {{game.questionLimit}}] :</span> {{currentQuestion.question}} <span class="guessDisplay"> [Guess {{4-user.guesses}} of 3]</span><p> 
+</div>
+<div class="answer"> 
+	<span>Guess: {{ state }}<span><span class="result" ng-show="showAnswerResult"> {{ guessResult }}</span>
+</div>
+<div ng-show="game.nextQuestionAvailable">
+	<span class="guessDisplay" ng-click="nextQuestion()"><a href="">Next Question</a></span>
+</div>
