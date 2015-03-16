@@ -3,14 +3,28 @@
 	<p>[Click on state to make a selection. You have three guesses]<p>
 </div>	
 <div class="question"> 
-	<p>Question <span class="guessDisplay">[{{game.questionNumber}} of {{game.questionLimit}}] :</span> {{currentQuestion.question}} <span class="guessDisplay"> [Guess {{4-user.guesses}} of 3]</span><p> 
+	<p>Question <span class="guessDisplay">[{{game.questionNumber}} of {{game.questionLimit}}] :</span> {{currentQuestion.question}}<p> 
 </div>
 <div class="answer"> 
-	<span>Guess: {{ state }}<span><span class="result" ng-show="showAnswerResult"> {{ guessResult }}</span>
+	<span>Guess <span class="guessDisplay"> [{{user.guesses}} of 3] : </span> {{ state }}</span>
+</div>
+<div class="answer"> 
+	<span>Answer: <span class="result" ng-show="game.nextQuestionAvailable"> {{ currentQuestion.answer }}</span> <span class="guessDisplay" ng-show="showAnswerResult"> {{ guessResult }} </span> 
 </div>
 <div ng-show="game.nextQuestionAvailable && game.active">
-	<span class="guessDisplay" ng-click="nextQuestion()"><a href="">Next Question</a></span>
+	<form class="guessDisplay">
+	Rate this question:
+			<input type="radio" ng-model="rating" name="rating" value="1"> 1
+			<input type="radio" ng-model="rating" name="rating" value="2"> 2
+			<input type="radio" ng-model="rating" name="rating" value="3"> 3   
+			<input type="radio" ng-model="rating" name="rating" value="4"> 4
+			&nbsp&nbsp&nbsp&nbsp<a ng-click="nextQuestion(rating,currentQuestion)" class="glyphicon glyphicon-chevron-right"></a>	&nbsp&nbsp<span>Q.{{game.questionNumber+1}}</span>
+	</form>
+
+<!-- 	<span>
+		<a class="guessDisplay" href="" ng-click="nextQuestion()">NEXT QUESTION</a> 
+	</span>  -->
 </div>
-<div ng-show="!game.active">
+<div ng-show="!game.active" class="guessDisplay">
 	You got {{user.correct}} / {{game.questionLimit}} correct.
 </div>

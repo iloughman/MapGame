@@ -10,13 +10,36 @@ body {
 h3 {
   text-align: left; }
 
+h4 {
+  margin-bottom: 0;
+  padding-bottom: 5px; }
+
+input {
+  border: 1px solid black;
+  border-radius: 5px; }
+
+textarea {
+  border: 1px solid black;
+  border-radius: 5px; }
+
+button {
+  font-weight: 700;
+  padding: 2px;
+  border-radius: 2px;
+  margin-bottom: 5px; }
+
 .content {
   margin-top: 50px;
-  margin-left: 20px; }
+  margin-left: 60px; }
 
 .instructions {
   font-weight: 700;
   font-size: 16px; }
+
+.item {
+  border-bottom: 1px solid black;
+  margin: 10px 0;
+  padding: 10px 0; }
 
 .question {
   font-size: 26px;
@@ -35,6 +58,17 @@ h3 {
   font-weight: 700;
   font-size: 16px;
   color: #337ab7; }
+
+#quit {
+  float: right; }
+
+.error {
+  font-weight: 700;
+  color: red; }
+
+.questionSubmitted {
+  font-weight: 700;
+  color: green; }
 
 #mapContainer {
   text-align: left; }

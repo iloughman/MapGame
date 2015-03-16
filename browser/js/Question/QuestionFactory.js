@@ -10,15 +10,22 @@ app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory, GameF
 	};
 
 	factory.submitQuestion = function(question){
-		console.log("hey");
 		return $http.post('/api/question/create', question).then(function (res){
 			return res.data;
 		})
+	};
+
+	factory.submitRating = function(rating,questionId) {
+		if (rating){
+			return $http.post('/api/question/updateRating', {id: questionId, rating:rating}).then(function(res){
+				return res.data;
+			})
+		}
 	}
 
 	factory.manageAnswer = function(answer, clicked){
-		if (answer == clicked && UserFactory.user.guesses > 1){
-			UserFactory.user.guesses = 0;
+		if (answer == clicked && UserFactory.user.guesses < 3){
+			UserFactory.user.guesses = 3;
 			ScoreFactory.correct++;
 			UserFactory.user.correct++;
 			UserFactory.user.active = false;
@@ -28,14 +35,14 @@ app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory, GameF
 			}
 			return "Correct";
 		}
-		else if (answer !== clicked && UserFactory.user.guesses > 1) {
-			UserFactory.user.guesses--;
+		else if (answer !== clicked && UserFactory.user.guesses < 3) {
+			UserFactory.user.guesses++;
 			return "Incorrect";
 		}
 		else {
-			UserFactory.user.guesses = 0;
+			UserFactory.user.guesses = 3;
 			ScoreFactory.incorrect++;
-			UserFactory.user.inocrrect++;
+			UserFactory.user.incorrect++;
 			UserFactory.user.active = false;
 			GameFactory.game.nextQuestionAvailable = true;
 			if (GameFactory.game.questionNumber == GameFactory.game.questionLimit){

@@ -9,7 +9,13 @@ var questionSchema = new mongoose.Schema({
 	answer: {type: String, required: true},
 	author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 	difficulty: {type: Number, min: 1, max: 3, required: true, default: 1},
-	category: {type: String}
-})
+	category: {type: String},
+	ratings: [{type: Number, min:1, max: 4}],
+	averageRating: {type: Number, min:1, max: 4}
+});
+
+questionSchema.statics.updateRating = function (rating, questionId, cb) {
+	return this.findByIdAndUpdate(questionId, {$push: {"ratings": rating}}, cb);
+};
 
 mongoose.model('Question', questionSchema);

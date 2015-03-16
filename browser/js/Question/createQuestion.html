@@ -1,17 +1,20 @@
 <form name="addQuestionForm" ng-submit="addQuestionForm.$valid && addQuestion(question)">
-Question<br>
+<h4>Question</h4></br>
 <textarea type="text" 
 		  name="answer"
-		  required 
+		  required
+		  ng-minLenght="15" 
 		  rows="3" 
 		  cols="50"
 		  ng-model="question.question"></textarea>
 <br>
-Answer<br>
+<h4>Answer - Enter the full state name</h4></br>
 <input type="text" 
 	   name="question"
 	   required
-	   ng-model="question.answer">
-<span><button class="btn btn-default" type="submit">Submit</button>
-<a ng-click="hideQuestionDisplay()" href="">[Hide Form]</a></span>
+	   ng-model="question.answer"
+	   state>
+<span><button class="btn btn-default" type="submit">Submit</button></br>
+<span ng-show="addQuestionForm.question.$error.state" class="error">The value is not a valid state!</span>
+<span ng-show="submitted" class="questionSubmitted">Question Submitted</span>
 </form>

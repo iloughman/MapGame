@@ -95,11 +95,25 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
         $scope.fetchAllQuestions();
     }
 
+    $scope.quitGame = function () {
+        $scope.questions = null;
+        $scope.currentQuestion = null;
+        $scope.user = null;
+        $scope.game.active = false;
+    }
+
     $scope.fetchAllQuestions = function () {
         QuestionFactory.getAllQuestions().then(function (questions) {
             $scope.game.nextQuestionAvailable = false;
             $scope.questions = questions;
-            console.log($scope.questions);
+            //Put this in questionFactory
+            $scope.questions.forEach(function (question) {
+                var average = 0;
+                question.ratings.forEach(function(rating){
+                    average += Number(rating);
+                });
+                question.averageRating = average/question.ratings.length;
+            });
             var numQuestions = questions.length;
             var questionIndex = Math.floor(Math.random()*numQuestions)+1;
             $scope.currentQuestion = $scope.questions[questionIndex];
@@ -107,9 +121,15 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
         });
     };
 
-    $scope.nextQuestion = function () {
+    $scope.nextQuestion = function (rating,currentQuestion) {
+        // if (rating){
+        //     QuestionFactory.submitRating(rating, currentQuestion._id).then(function (response) {
+        //         $scope.rating=null;
+        //     });
+        // };
+        $scope.rating = null;
         $scope.game.questionNumber++;
-        $scope.user.guesses = 3;
+        $scope.user.guesses = 1;
         console.log($scope.questions);
         $scope.game.nextQuestionAvailable = false;
         var numQuestions = $scope.questions.length;
@@ -128,5 +148,6 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
     }
 
     $scope.score = ScoreFactory;
+
 });
 

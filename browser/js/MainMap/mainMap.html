@@ -29,12 +29,18 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="item">
-				<span><h3 ng-click="beginGame()"><a href="">Take A Quiz</a><h3><question ng-show="currentQuestion"></question></span>
+				<h3><a ng-click="beginGame()" href="">Take A Trivia Quiz</a><span class="guessDisplay" id="quit" ng-show="currentQuestion"><a ng-click="quitGame()" href=""> [Quit] </a></h3><question ng-show="currentQuestion"></question>
 			</div>
+
 			<div class="item">
-				<h4 ng-click="createQuestionDisplay()"><a href="">Create your own question!</a></h4>
+				<h4><a ng-click="createQuestionDisplay()" href="">Create your own question!</a><a class="guessDisplay" id="quit" ng-show="createQuestionForm" ng-click="hideQuestionDisplay()" href="">[Hide Form]</a></h4>
 				<create-question ng-show="createQuestionForm"></create-question>
 			</div>
+
+			<div class="item">
+				<h3><a ng-click="beginCapitalsGame()" href="">Name the Capitals</a><span class="guessDisplay" id="quit" ng-show=""><a ng-click="quitGame()" href=""> [Quit] </a></h3>
+			</div>
+
 		</div>
 		<div class="col-md-8" id="mapContainer">
 		    <svg>

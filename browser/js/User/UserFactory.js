@@ -5,7 +5,7 @@ app.factory('UserFactory', function() {
 	var factory = {};
 
 	var User = function (){
-		this.guesses = 3;
+		this.guesses = 1;
 		this.active = false;
 		this.game = true;
 		this.correct = 0;
