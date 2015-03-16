@@ -8,6 +8,8 @@ app.factory('UserFactory', function() {
 		this.guesses = 3;
 		this.active = false;
 		this.game = true;
+		this.correct = 0;
+		this.incorrect = 0;
 		this.nextQuestionAvailable = false;
 		this.questionNumber = 1;
 		this.questionLimit = 10;

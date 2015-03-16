@@ -90,6 +90,7 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
 
     $scope.beginGame = function (){
         $scope.game = GameFactory.createGame();
+        $scope.game.active = true;
         $scope.user = UserFactory.createUser();
         $scope.fetchAllQuestions();
     }

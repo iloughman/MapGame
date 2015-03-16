@@ -8,7 +8,7 @@ app.factory('GameFactory', function() {
 		this.active = false;
 		this.nextQuestionAvailable = false;
 		this.questionNumber = 1;
-		this.questionLimit = 10;
+		this.questionLimit = 5;
 	};
 
 	factory.createGame = function(){

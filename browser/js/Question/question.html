@@ -8,6 +8,9 @@
 <div class="answer"> 
 	<span>Guess: {{ state }}<span><span class="result" ng-show="showAnswerResult"> {{ guessResult }}</span>
 </div>
-<div ng-show="game.nextQuestionAvailable">
+<div ng-show="game.nextQuestionAvailable && game.active">
 	<span class="guessDisplay" ng-click="nextQuestion()"><a href="">Next Question</a></span>
+</div>
+<div ng-show="!game.active">
+	You got {{user.correct}} / {{game.questionLimit}} correct.
 </div>

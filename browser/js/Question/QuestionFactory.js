@@ -17,12 +17,15 @@ app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory, GameF
 	}
 
 	factory.manageAnswer = function(answer, clicked){
-		console.log(UserFactory.user.guesses);
-		if (answer == clicked){
+		if (answer == clicked && UserFactory.user.guesses > 1){
 			UserFactory.user.guesses = 0;
 			ScoreFactory.correct++;
+			UserFactory.user.correct++;
 			UserFactory.user.active = false;
 			GameFactory.game.nextQuestionAvailable = true;
+			if (GameFactory.game.questionNumber == GameFactory.game.questionLimit){
+				GameFactory.game.active = false;
+			}
 			return "Correct";
 		}
 		else if (answer !== clicked && UserFactory.user.guesses > 1) {
@@ -32,8 +35,12 @@ app.factory('QuestionFactory', function ($http, ScoreFactory, UserFactory, GameF
 		else {
 			UserFactory.user.guesses = 0;
 			ScoreFactory.incorrect++;
+			UserFactory.user.inocrrect++;
 			UserFactory.user.active = false;
 			GameFactory.game.nextQuestionAvailable = true;
+			if (GameFactory.game.questionNumber == GameFactory.game.questionLimit){
+				GameFactory.game.active = false;
+			}
 			return "No more guesses";
 		}
 	}
