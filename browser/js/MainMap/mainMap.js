@@ -56,7 +56,7 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
             });
          })
          .on('mouseenter', function (d,i) {
-             d3.select(this).style("fill","yellow");
+             d3.select(this).style("fill","red");
              d3.select(this).style("stroke","black");
              var state = d.properties.NAME;
              if (!$scope.guessResult || $scope.guessResult !== "correct"){
