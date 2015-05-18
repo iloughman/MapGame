@@ -1,6 +1,6 @@
 module.exports = {
-  // "DATABASE_URI": "mongodb://localhost:27017/MapGame",
-  "DATABASE_URI": "mongodb://iloughman:(pacific973)@ds031852.mongolab.com:31852/heroku_app36950368"
+  "DATABASE_URI": "mongodb://localhost:27017/MapGame",
+  // "DATABASE_URI": "mongodb://iloughman:(pacific973)@ds031852.mongolab.com:31852/heroku_app36950368"
   "SESSION_SECRET": "Jeans are delicious",
   "TWITTER": {
     "consumerKey": "ZVQ2NZscYX1aa6nZI81Fg8HBg",
