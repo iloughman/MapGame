@@ -32,7 +32,6 @@ app.controller('mainMapCtrl', function ($scope, QuestionFactory, UserFactory, Ga
 
     d3.json("states.json", function (error, states) {
      if (error) return console.log(error);
-     console.log(states);
 
      svg.selectAll("path")
          .data(states.features)

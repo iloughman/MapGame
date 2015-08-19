@@ -23,7 +23,7 @@ app.directive('state', function () {
 		require: 'ngModel',
 		link: function (scope, elem, attrs, ctrl) {
 			ctrl.$validators.state = function (modelValue, viewValue){
-				viewValue = viewValue.toUpperCase();
+				if (viewValue) {viewValue = viewValue.toUpperCase();}
 				if (stateArray.indexOf(viewValue) > -1){
 					return true;
 				} else {
